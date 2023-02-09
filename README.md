@@ -23,7 +23,6 @@ export default defineNuxtConfig({
     protectedRoutesRedirectURL: '/login' // Non-logged user redirection URL
   }
 })
-
 ```
 
 ## Exemple
