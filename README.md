@@ -14,7 +14,17 @@
 	- NODE_ENV
 
 ## Configuration
-You can configure the proxying route (default to /appwrite) with the **proxyRoute** settings.
+You can configure the following settings :
+```js
+export default defineNuxtConfig({
+  appwrite: {
+		proxyRoute: '/appwrite', // Development appwrite proxy route
+    protectedRoutes: ['/account'], // Route protected by SSR session guard
+    protectedRoutesRedirectURL: '/login' // Non-logged user redirection URL
+  }
+})
+
+```
 
 ## Exemple
 ```js
