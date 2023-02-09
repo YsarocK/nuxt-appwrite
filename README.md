@@ -17,7 +17,7 @@
 You can configure the proxying route (default to /appwrite) with the **proxyRoute** settings.
 
 ## Exemple
-```
+```js
 <script setup lang="ts">
 const { client, account, storage, database } = useAppwrite()
 </script>
