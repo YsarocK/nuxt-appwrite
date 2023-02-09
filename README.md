@@ -1,7 +1,7 @@
 # nuxt-appwrite
 
 ## Features
-- ```useAppwrite``` composable exposing **Account, Users, Databases & Storage APIs**.
+- ```useAppwrite``` composable exposing **Account, Databases & Storage APIs**.
 - Working authentication on localhost (proxying requests & cookies)
 - [INCOMING] SSR authentication routes
 - [INCOMING] SSR session
@@ -15,3 +15,10 @@
 
 ## Configuration
 You can configure the proxying route (default to /appwrite) with the **proxyRoute** settings.
+
+## Exemple
+```
+<script setup lang="ts">
+const { client, account, storage, database } = useAppwrite()
+</script>
+```
