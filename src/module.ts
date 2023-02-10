@@ -56,7 +56,7 @@ export default defineNuxtModule<ModuleOptions>({
     const resolver = createResolver(import.meta.url)
     addPlugin(resolver.resolve('./runtime/main'))
     addImportsDir(resolver.resolve('./runtime', "composables"));
-    addImportsDir(resolver.resolve('./runtime', "middleware"));
+    addRouteMiddleware({ name: 'guard', path: resolver.resolve('./runtime/middleware/guard') })
 
     if (options.guardRoutes.length > 0) {
       if (options.guardSSR) {
