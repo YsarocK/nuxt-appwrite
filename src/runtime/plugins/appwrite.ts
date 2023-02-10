@@ -1,4 +1,4 @@
-import { Client, Account, Databases, Storage, Avatars, Functions } from 'appwrite';
+import { Client, Account, Databases, Storage, Avatars, Functions, Role, Permission } from 'appwrite';
 
 interface AppwriteOptions {
   endpoint: string;
@@ -12,6 +12,8 @@ export class Appwrite {
   storage: Storage;
   avatars: Avatars;
   functions: Functions;
+  role: Role;
+  permission: Permission;
 
   constructor(options: AppwriteOptions) {
     this.client = new Client();
@@ -23,5 +25,7 @@ export class Appwrite {
     this.storage = new Storage(this.client);
     this.avatars = new Avatars(this.client);
     this.functions = new Functions(this.client);
+    this.role = new Role();
+    this.permission = new Permission();
   }
 }
