@@ -1,10 +1,10 @@
-import { defineNuxtModule, addPlugin, addImportsDir, createResolver, addServerHandler } from '@nuxt/kit'
+import { defineNuxtModule, addPlugin, addImportsDir, createResolver, addServerHandler, addRouteMiddleware } from '@nuxt/kit'
 
-// Module options TypeScript interface definition
 export interface ModuleOptions {
   proxyRoute: string,
-  protectedRoutes: string[],
-  protectedRoutesRedirectURL: string
+  guardRoutes: string[],
+  guardRoutesRedirectURL: string,
+  guardSSR: boolean
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -14,8 +14,9 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: {
     proxyRoute: '/appwrite',
-    protectedRoutes: [],
-    protectedRoutesRedirectURL: '/login'
+    guardRoutes: [],
+    guardRoutesRedirectURL: '/login',
+    guardSSR: true
   },
   setup(options, nuxt) {
     if (!process.env.APPWRITE_PROJECT_ID) {
@@ -37,22 +38,32 @@ export default defineNuxtModule<ModuleOptions>({
 
     nuxt.options.runtimeConfig = {
       ...nuxt.options.runtimeConfig,
-      protectedRoutes: options.protectedRoutes,
-      protectedRoutesRedirectURL: options.protectedRoutesRedirectURL,
+      appwrite: {
+        guardRoutes: options.guardRoutes,
+        guardRoutesRedirectURL: options.guardRoutesRedirectURL,
+        guardSSR: options.guardSSR,
+      },
       public: {
-        APPWRITE_ENDPOINT: process.env.NODE_ENV === 'development'
-          ? `${nuxt.options.devServer.url}/${options.proxyRoute}}`
-          : process.env.APPWRITE_ENDPOINT,
-        APPWRITE_PROJECT_ID: process.env.APPWRITE_PROJECT_ID,
+        appwrite: {
+          APPWRITE_ENDPOINT: process.env.NODE_ENV === 'development'
+            ? `${nuxt.options.devServer.url}${options.proxyRoute}}`
+            : process.env.APPWRITE_ENDPOINT,
+          APPWRITE_PROJECT_ID: process.env.APPWRITE_PROJECT_ID,
+        }
       }
     }
 
     const resolver = createResolver(import.meta.url)
     addPlugin(resolver.resolve('./runtime/main'))
     addImportsDir(resolver.resolve('./runtime', "composables"));
+    addRouteMiddleware({ name: 'guard', path: resolver.resolve('./runtime/middleware/guard') })
 
-    if (options.protectedRoutes.length > 0) {
-      addServerHandler({ middleware: true, handler: resolver.resolve('./server/middleware/guard'), })
+    if (options.guardRoutes.length > 0) {
+      if (options.guardSSR) {
+        addServerHandler({ middleware: true, handler: resolver.resolve('./server/middleware/guard'), })
+      } else {
+        console.warn('guardSSR is false, guardRoutes will not work on SSR. Add "guard" middleware to protected routes manually.')
+      }
     }
   }
 })
