@@ -1,4 +1,4 @@
-# nuxt-appwrite
+# nuxt3-appwrite
 
 ## Features
 - ```useAppwrite``` composable exposing **Account, Databases & Storage APIs**.

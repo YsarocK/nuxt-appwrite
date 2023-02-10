@@ -1,7 +1,16 @@
 {
-  "name": "nuxt-appwrite",
-  "version": "1.0.0",
+  "name": "nuxt3-appwrite",
+  "version": "1.0.1",
   "description": "Nuxt 3 Appwrite integration",
+  "author": {
+    "name": "Etienne Moureton",
+    "email": "hello@etiennemoureton.fr"
+  },
+  "homepage": "https://nuxt-appwrite.etiennemoureton.fr",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YsarocK/nuxt-appwrite"
+  },
   "license": "MIT",
   "type": "module",
   "exports": {
