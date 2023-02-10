@@ -9,7 +9,7 @@ export interface ModuleOptions {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: 'nuxt-appwrite',
+    name: 'nuxt3-appwrite',
     configKey: 'appwrite'
   },
   defaults: {
