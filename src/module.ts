@@ -1,10 +1,11 @@
-import { defineNuxtModule, addPlugin, addImportsDir, createResolver, addServerHandler } from '@nuxt/kit'
+import { defineNuxtModule, addPlugin, addImportsDir, createResolver, addServerHandler, addRouteMiddleware } from '@nuxt/kit'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
   proxyRoute: string,
-  protectedRoutes: string[],
-  protectedRoutesRedirectURL: string
+  guardSSR: boolean,
+  guardRoutes: string[],
+  guardRoutesRedirectURL: string
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -13,9 +14,10 @@ export default defineNuxtModule<ModuleOptions>({
     configKey: 'appwrite'
   },
   defaults: {
+    guardSSR: false,
     proxyRoute: '/appwrite',
-    protectedRoutes: [],
-    protectedRoutesRedirectURL: '/login'
+    guardRoutes: [],
+    guardRoutesRedirectURL: '/login'
   },
   setup(options, nuxt) {
     if (!process.env.APPWRITE_PROJECT_ID) {
@@ -37,11 +39,11 @@ export default defineNuxtModule<ModuleOptions>({
 
     nuxt.options.runtimeConfig = {
       ...nuxt.options.runtimeConfig,
-      protectedRoutes: options.protectedRoutes,
-      protectedRoutesRedirectURL: options.protectedRoutesRedirectURL,
+      protectedRoutes: options.guardRoutes,
+      protectedRoutesRedirectURL: options.guardRoutesRedirectURL,
       public: {
         APPWRITE_ENDPOINT: process.env.NODE_ENV === 'development'
-          ? `${nuxt.options.devServer.url}/${options.proxyRoute}}`
+          ? `${nuxt.options.devServer.url}${options.proxyRoute}}`
           : process.env.APPWRITE_ENDPOINT,
         APPWRITE_PROJECT_ID: process.env.APPWRITE_PROJECT_ID,
       }
@@ -50,9 +52,16 @@ export default defineNuxtModule<ModuleOptions>({
     const resolver = createResolver(import.meta.url)
     addPlugin(resolver.resolve('./runtime/main'))
     addImportsDir(resolver.resolve('./runtime', "composables"));
+    addImportsDir(resolver.resolve('./runtime', "middleware"));
 
-    if (options.protectedRoutes.length > 0) {
-      addServerHandler({ middleware: true, handler: resolver.resolve('./server/middleware/guard'), })
+    if (options.guardRoutes.length > 0) {
+      if (options.guardSSR) {
+        addServerHandler({ middleware: true, handler: resolver.resolve('./server/middleware/guard'), })
+      } else {
+        console.warn('guardSSR is set to false, make sure to add the guard middleware to your nuxt.config.js')
+      }
     }
+
+    addRouteMiddleware({ name: 'guard', path: resolver.resolve('./runtime/middleware/guard') })
   }
 })
