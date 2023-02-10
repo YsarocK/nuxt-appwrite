@@ -1,4 +1,4 @@
-# nuxt-appwrite
+# nuxt3-appwrite
 
 ## Features
 - ```useAppwrite``` composable exposing **Account, Databases & Storage APIs**.
@@ -19,11 +19,14 @@ You can configure the following settings :
 export default defineNuxtConfig({
   appwrite: {
 		proxyRoute: '/appwrite', // Development appwrite proxy route
-    protectedRoutes: ['/account'], // Route protected by SSR session guard
-    protectedRoutesRedirectURL: '/login' // Non-logged user redirection URL
+    guardRoutes: [], // Route protected by SSR session guard (NO CLIENT-SIDE)
+    guardRoutesRedirectURL: '/login', // Non-logged user redirection URL
+    guardSSR: true // Define if route protection should be handle server
   }
 })
 ```
+
+When using client-side guard, a ```guard```middleware is provided and has to be add on protected route.
 
 ## Exemple
 ```js
