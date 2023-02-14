@@ -42,6 +42,7 @@ export default defineNuxtModule<ModuleOptions>({
         guardRoutes: options.guardRoutes,
         guardRoutesRedirectURL: options.guardRoutesRedirectURL,
         guardSSR: options.guardSSR,
+        APPWRITE_API_KEY: process.env.APPWRITE_API_KEY || '',
       },
       public: {
         appwrite: {
@@ -56,6 +57,7 @@ export default defineNuxtModule<ModuleOptions>({
     const resolver = createResolver(import.meta.url)
     addPlugin(resolver.resolve('./runtime/main'))
     addImportsDir(resolver.resolve('./runtime', "composables"));
+    addImportsDir(resolver.resolve('./server', "composables"));
 
     if (options.guardRoutes.length > 0) {
       if (options.guardSSR) {
