@@ -1,4 +1,4 @@
-useAimport { Client, Databases, Users, Account, Storage, Avatars, Functions, Role, Permission} from 'node-appwrite'
+import { Client, Databases, Users, Account, Storage, Avatars, Functions, Role, Permission} from 'node-appwrite'
 
 const config = useRuntimeConfig()
 

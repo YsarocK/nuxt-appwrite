@@ -57,11 +57,11 @@ export default defineNuxtModule<ModuleOptions>({
     const resolver = createResolver(import.meta.url)
     addPlugin(resolver.resolve('./runtime/main'))
     addImportsDir(resolver.resolve('./runtime', "composables"));
-    addImportsDir(resolver.resolve('./server', "composables"));
+    addImportsDir(resolver.resolve('./runtime/server', "composables"));
 
     if (options.guardRoutes.length > 0) {
       if (options.guardSSR) {
-        addServerHandler({ middleware: true, handler: resolver.resolve('./server/middleware/guard'), })
+        addServerHandler({ middleware: true, handler: resolver.resolve('./runtime/server/middleware/guard') })
       } else {
         console.warn('guardSSR is false, guardRoutes will not work on SSR. Add "guard" middleware to protected routes manually.')
       }
