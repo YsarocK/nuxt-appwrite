@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  middleware: ["guard"],
+onMounted(() => {
+  console.log(useAppwrite());
 });
 </script>

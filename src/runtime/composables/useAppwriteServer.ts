@@ -31,6 +31,8 @@ class AppwriteServer {
     this.permission = new Permission();
   }
 }
+
+// test
 const useAppwriteServer = () => {
   return new AppwriteServer()
 }

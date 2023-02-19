@@ -55,7 +55,7 @@ export default defineNuxtModule<ModuleOptions>({
     }
 
     const resolver = createResolver(import.meta.url)
-    addPlugin(resolver.resolve('./runtime/main'))
+    addPlugin(resolver.resolve('./runtime/plugins/appwrite'))
     addImportsDir(resolver.resolve('./runtime', "composables"));
     addImportsDir(resolver.resolve('./runtime/server', "composables"));
 

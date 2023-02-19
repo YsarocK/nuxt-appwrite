@@ -1,4 +1,5 @@
 import { Client, Account, Databases, Storage, Avatars, Functions, Role, Permission } from 'appwrite';
+import { defineNuxtPlugin } from '#app'
 
 interface AppwriteOptions {
   endpoint: string;
@@ -29,3 +30,17 @@ export class Appwrite {
     this.permission = new Permission();
   }
 }
+
+
+export default defineNuxtPlugin((nuxtApp) => {
+  const appwrite = new Appwrite({
+    endpoint: nuxtApp.$config.public.appwrite.APPWRITE_ENDPOINT,
+    project: nuxtApp.$config.public.appwrite.APPWRITE_PROJECT_ID
+  })
+
+  return {
+    provide: {
+      appwrite
+    }
+  }
+})
