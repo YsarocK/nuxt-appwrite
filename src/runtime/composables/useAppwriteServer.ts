@@ -1,8 +1,6 @@
-import { Client, Databases, Users, Account, Storage, Avatars, Functions, Role, Permission} from 'node-appwrite'
+import { Client, Databases, Users, Account, Storage, Avatars, Functions, Role, Permission } from 'node-appwrite'
 
 const config = useRuntimeConfig()
-
-let client = new Client();
 
 class AppwriteServer {
   client: Client;
@@ -32,7 +30,10 @@ class AppwriteServer {
   }
 }
 
-// test
+/**
+ * Use the current Appwrite Server instance
+ * @returns Client, Databases, Users, Account, Storage, Avatars, Functions, Role, Permission
+ */
 const useAppwriteServer = () => {
   return new AppwriteServer()
 }
