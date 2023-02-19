@@ -4,7 +4,7 @@ const config = useRuntimeConfig()
 
 let client = new Client();
 
-const instance = class Appwrite {
+class AppwriteServer {
   client: Client;
   users: Users;
   databases: Databases;
@@ -15,7 +15,7 @@ const instance = class Appwrite {
   role: Role;
   permission: Permission;
 
-  constructor(options: AppwriteOptions) {
+  constructor() {
     this.client = new Client();
     this.client
       .setEndpoint(config.public.APPWRITE_ENDPOINT) // Your API Endpoint
@@ -32,7 +32,7 @@ const instance = class Appwrite {
   }
 }
 const useAppwriteServer = () => {
-  return new instance()
+  return new AppwriteServer()
 }
 
 export default useAppwriteServer
