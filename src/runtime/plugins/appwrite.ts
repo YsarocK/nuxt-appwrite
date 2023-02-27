@@ -16,11 +16,11 @@ export class Appwrite {
   role: Role;
   permission: Permission;
   query: Query;
-  ID: ID;
-  AppwriteException: any;
-  Graphql: Graphql;
-  Locale: Locale;
-  Teams: Teams;
+  id: ID;
+  appwriteException: any;
+  graphql: Graphql;
+  locale: Locale;
+  teams: Teams;
 
   constructor(options: AppwriteOptions) {
     this.client = new Client();
@@ -35,11 +35,11 @@ export class Appwrite {
     this.role = Role;
     this.permission = Permission;
     this.query = Query;
-    this.ID = ID;
-    this.AppwriteException = AppwriteException;
-    this.Graphql = new Graphql(this.client);
-    this.Locale = new Locale(this.client);
-    this.Teams = new Teams(this.client);
+    this.id = ID;
+    this.appwriteException = AppwriteException;
+    this.graphql = new Graphql(this.client);
+    this.locale = new Locale(this.client);
+    this.teams = new Teams(this.client);
   }
 }
 

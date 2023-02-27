@@ -13,13 +13,13 @@ class AppwriteServer {
   role: Role;
   permission: Permission;
   query: Query;
-  ID: ID;
-  AppwriteException: any;
-  Graphql: Graphql;
-  Locale: Locale;
-  Teams: Teams;
-  Health: Health;
-  InputFile: InputFile;
+  id: ID;
+  appwriteException: any;
+  graphql: Graphql;
+  locale: Locale;
+  teams: Teams;
+  health: Health;
+  inputFile: InputFile;
 
   constructor() {
     this.client = new Client();
