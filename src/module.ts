@@ -1,4 +1,4 @@
-import { defineNuxtModule, addPlugin, addImportsDir, createResolver, addServerHandler, addRouteMiddleware } from '@nuxt/kit'
+import { defineNuxtModule, addPlugin, addImportsDir, createResolver, addServerHandler, addRouteMiddleware, extendViteConfig } from '@nuxt/kit'
 
 export interface ModuleOptions {
   proxyRoute: string,
@@ -19,6 +19,12 @@ export default defineNuxtModule<ModuleOptions>({
     guardSSR: true
   },
   setup(options, nuxt) {
+    extendViteConfig((config) => {
+      config.optimizeDeps = config.optimizeDeps || {}
+      config.optimizeDeps.include = config.optimizeDeps.include || []
+      config.optimizeDeps.include.push('cross-fetch')
+    })
+
     if (!process.env.APPWRITE_PROJECT_ID) {
       throw new Error('APPWRITE_PROJECT_ID is not defined')
     }
@@ -26,6 +32,7 @@ export default defineNuxtModule<ModuleOptions>({
     if (!process.env.APPWRITE_ENDPOINT) {
       throw new Error('APPWRITE_ENDPOINT is not defined')
     }
+
 
     nuxt.options.nitro.devProxy = {
       ...nuxt.options.nitro.devProxy,
