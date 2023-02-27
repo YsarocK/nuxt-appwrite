@@ -1,5 +1,5 @@
 import { defineNuxtPlugin } from '#app'
-import { Client, Account, Databases, Storage, Avatars, Functions, Role, Permission } from 'appwrite';
+import { Client, Account, Databases, Storage, Avatars, Functions, Role, Permission, Query, ID, AppwriteException, Graphql, Locale, Teams } from 'appwrite';
 
 interface AppwriteOptions {
   endpoint: string;
@@ -15,6 +15,12 @@ export class Appwrite {
   functions: Functions;
   role: Role;
   permission: Permission;
+  query: Query;
+  ID: ID;
+  AppwriteException: any;
+  Graphql: Graphql;
+  Locale: Locale;
+  Teams: Teams;
 
   constructor(options: AppwriteOptions) {
     this.client = new Client();
@@ -26,8 +32,14 @@ export class Appwrite {
     this.storage = new Storage(this.client);
     this.avatars = new Avatars(this.client);
     this.functions = new Functions(this.client);
-    this.role = new Role();
-    this.permission = new Permission();
+    this.role = Role;
+    this.permission = Permission;
+    this.query = Query;
+    this.ID = ID;
+    this.AppwriteException = AppwriteException;
+    this.Graphql = new Graphql(this.client);
+    this.Locale = new Locale(this.client);
+    this.Teams = new Teams(this.client);
   }
 }
 
