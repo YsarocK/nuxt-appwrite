@@ -54,7 +54,7 @@ export default defineNuxtModule<ModuleOptions>({
       public: {
         appwrite: {
           APPWRITE_ENDPOINT: process.env.NODE_ENV === 'development'
-            ? `${nuxt.options.devServer.url}${options.proxyRoute}}`
+            ? `${nuxt.options.devServer.url}${options.proxyRoute}`
             : process.env.APPWRITE_ENDPOINT,
           APPWRITE_PROJECT_ID: process.env.APPWRITE_PROJECT_ID,
         }
