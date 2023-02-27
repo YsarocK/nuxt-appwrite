@@ -36,13 +36,13 @@ class AppwriteServer {
     this.role = Role;
     this.permission = Permission;
     this.query = Query;
-    this.ID = ID;
-    this.AppwriteException = AppwriteException;
-    this.Graphql = new Graphql(this.client);
-    this.Locale = new Locale(this.client);
-    this.Teams = new Teams(this.client);
-    this.Health = new Health(this.client);
-    this.InputFile = InputFile;
+    this.id = ID;
+    this.appwriteException = AppwriteException;
+    this.graphql = new Graphql(this.client);
+    this.locale = new Locale(this.client);
+    this.teams = new Teams(this.client);
+    this.health = new Health(this.client);
+    this.inputFile = InputFile;
   }
 }
 
