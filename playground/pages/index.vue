@@ -1,9 +1,8 @@
 <template>
   <h1>test</h1>
+  <p v-if="session">{{ session.$id }}</p>
 </template>
 
 <script setup lang="ts">
-onMounted(() => {
-  console.log(useAppwrite());
-});
+const session = useAuthSession();
 </script>
