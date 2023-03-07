@@ -1,5 +1,6 @@
 import { useNuxtApp } from "#app";
 import { Models } from "node-appwrite";
+import { onBeforeMount, ref } from "vue";
 
 /**
  * Use the current Appwrite session
