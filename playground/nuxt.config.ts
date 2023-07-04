@@ -1,7 +1,9 @@
 export default defineNuxtConfig({
   modules: ['../src/module'],
   appwrite: {
-    guardSSR: false
+    guardRoutes: ['/test'],
+    guardRoutesRedirectURL: '/login',
+    guardSSR: true
   },
   imports: {
     autoImport: true
