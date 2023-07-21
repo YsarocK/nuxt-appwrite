@@ -1,6 +1,6 @@
 {
   "name": "nuxt3-appwrite",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "description": "Nuxt 3 Appwrite integration",
   "author": {
     "name": "Etienne Moureton",
