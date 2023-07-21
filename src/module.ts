@@ -51,13 +51,15 @@ export default defineNuxtModule<ModuleOptions>({
         guardSSR: options.guardSSR,
         APPWRITE_API_KEY: process.env.APPWRITE_API_KEY || '',
       },
-      public: {
-        appwrite: {
-          APPWRITE_ENDPOINT: process.env.NODE_ENV === 'development'
-            ? `${nuxt.options.devServer.url}${options.proxyRoute}`
-            : process.env.APPWRITE_ENDPOINT,
-          APPWRITE_PROJECT_ID: process.env.APPWRITE_PROJECT_ID,
-        }
+    }
+
+    nuxt.options.runtimeConfig.public = {
+      ...nuxt.options.runtimeConfig.public,
+      appwrite: {
+        APPWRITE_ENDPOINT: process.env.NODE_ENV === 'development'
+          ? `${nuxt.options.devServer.url}${options.proxyRoute}`
+          : process.env.APPWRITE_ENDPOINT,
+        APPWRITE_PROJECT_ID: process.env.APPWRITE_PROJECT_ID,
       }
     }
 
