@@ -1,7 +1,5 @@
 import { Client, Databases, Users, Account, Storage, Avatars, Functions, Role, Permission, Query, ID, AppwriteException, Graphql, Locale, Teams, Health, InputFile } from 'node-appwrite'
 
-const config = useRuntimeConfig()
-
 class AppwriteServer {
   client: Client;
   users: Users;
@@ -24,9 +22,9 @@ class AppwriteServer {
   constructor() {
     this.client = new Client();
     this.client
-      .setEndpoint(config.public.APPWRITE_ENDPOINT) // Your API Endpoint
-      .setProject(config.public.APPWRITE_PROJECT_ID) // Your project ID
-      .setKey(config.appwrite.APPWRITE_API_KEY) // Your secret API key
+      .setEndpoint(process.env.APPWRITE_ENDPOINT || '') // Your API Endpoint
+      .setProject(process.env.APPWRITE_PROJECT_ID || '') // Your project ID
+      .setKey(process.env.APPWRITE_API_KEY || '') // Your secret API key
     this.databases = new Databases(this.client);
     this.users = new Users(this.client)
     this.account = new Account(this.client);
