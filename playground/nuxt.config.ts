@@ -1,8 +1,8 @@
 export default defineNuxtConfig({
   modules: ['../src/module'],
   appwrite: {
-    guardRoutes: ['/test'],
-    guardRoutesRedirectURL: '/login',
+    guardRoutes: ['/protected'],
+    guardRoutesRedirectURL: '/',
     guardSSR: true
   },
   imports: {
