@@ -1,5 +1,6 @@
 import { getSessionFromServer } from "../utils/getSessionFromServer"
 import { defineEventHandler, parseCookies, sendRedirect } from "h3";
+import { useRuntimeConfig } from "#imports";
 
 export default defineEventHandler(async (event) => {
   const runtimeConfig = useRuntimeConfig()
