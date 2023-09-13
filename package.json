@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.6.5",
-    "appwrite": "^10.2.0",
+    "appwrite": "^13.0.0",
     "node-appwrite": "^8.2.0"
   },
   "devDependencies": {
