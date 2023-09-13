@@ -6,6 +6,26 @@ interface AppwriteOptions {
   project: string;
 }
 
+// const Appwrite = () => {
+//   const client = new Client()
+//   return {
+//     client: client,
+//     databases: new Databases(client),
+//     account: new Account(client),
+//     storage: new Storage(client),
+//     avatars: new Avatars(client),
+//     functions: new Functions(client),
+//     role: Role,
+//     permission: Permission,
+//     query: Query,
+//     id: ID,
+//     appwriteException: AppwriteException,
+//     graphql: new Graphql(client),
+//     locale: new Locale(client),
+//     teams: new Teams(client)
+//   }
+// }
+
 export class Appwrite {
   client: Client;
   databases: Databases;
