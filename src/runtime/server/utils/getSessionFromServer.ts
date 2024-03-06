@@ -31,6 +31,7 @@ export const getSessionFromServer = async (cookies: Record<string, string>, conf
       }
     })
     .catch(err => {
+      console.log(err)
       return undefined
     })
 }

@@ -36,21 +36,21 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.6.5",
-    "appwrite": "^10.2.0",
-    "node-appwrite": "^8.2.0"
+    "@nuxt/kit": "^3.10.3",
+    "appwrite": "^13.0.2",
+    "node-appwrite": "^11.1.1"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
-    "@nuxt/module-builder": "^0.5.1",
+    "@nuxt/module-builder": "^0.5.5",
     "@nuxt/schema": "^3.1.2",
     "@nuxt/test-utils": "^3.1.2",
     "changelogen": "^0.5.3",
     "eslint": "^8.33.0",
-    "nuxt": "^3.6.5",
+    "nuxt": "^3.10.3",
     "vitest": "^0.34.4"
   },
   "engines": {
-    "node": "18.x"
+    "node": ">18.x"
   }
 }

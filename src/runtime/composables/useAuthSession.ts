@@ -1,13 +1,13 @@
 import { useNuxtApp } from "#app";
-import { Models } from "node-appwrite";
 import { onBeforeMount, ref } from "vue";
+import type { Models } from "node-appwrite";
 
 /**
  * Use the current Appwrite session
  */
 const useAuthSession = () => {
   const { $appwrite } = useNuxtApp();
-  const session = ref<Models.Account<Models.Preferences> | undefined | null>(null)
+  const session = ref<Models.User<Models.Preferences> | undefined | null>(null)
 
   onBeforeMount(async () => {
     try {
