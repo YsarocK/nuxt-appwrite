@@ -49,6 +49,9 @@ class AppwriteServer {
  * @returns Client, Databases, Users, Account, Storage, Avatars, Functions, Role, Permission
  */
 const useAppwriteServer = () => {
+  if(process.client) {
+    throw new Error('useAppwriteServer can only be used in server side')
+  }
   return new AppwriteServer()
 }
 
