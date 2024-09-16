@@ -38,7 +38,7 @@
   "dependencies": {
     "@nuxt/kit": "^3.10.3",
     "appwrite": "^13.0.2",
-    "node-appwrite": "^11.1.1"
+    "node-appwrite": "^14.1.0"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.2.0",
